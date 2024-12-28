@@ -3,6 +3,8 @@ session_start();
 include('includes/config.php');
 error_reporting(0);
 
+echo "this is the first page or index."
+
 ?>
 
 <!DOCTYPE HTML>
@@ -33,7 +35,7 @@ error_reporting(0);
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet"> 
 </head>
 <body>
-
+  this is ui page.
 <!-- Start Switcher -->
 <?php include('includes/colorswitcher.php');?>
 <!-- /Switcher -->  
