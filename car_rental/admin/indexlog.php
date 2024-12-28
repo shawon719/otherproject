@@ -1,6 +1,19 @@
 
 <?php 
         session_start();
+
+        //form binding with php
+        // when signin button click then check email and password in database 
+        if(isset($_POST["btn"])){
+            $email=$_POST["txtEmail"];
+            $password=$_POST["txtPassword"];
+
+            if($email=="name$gmail.com" && $password=="123"){
+                $_SESSION["sname"]=$email;
+                header("location:dashboard.php");
+            }
+
+        }
    
 ?>
 
@@ -69,13 +82,13 @@
             <!-- email section -->
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                <input type="email" name="txtEmail" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <input type="email" name="txtEmail" class="form-control" id="exampleFormControlInput1" placeholder="name@gmail.com">
             </div>
 
             <!-- password section -->
              <div class="mb-3">
                 <label for="inputPassword5" class="form-label">Password</label>
-                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                    <input type="password" name="txtPassword" id="inputPassword5" class="form-control" >
                     <!-- <div id="passwordHelpBlock" class="form-text">
                         Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
                      </div> -->
