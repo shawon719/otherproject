@@ -22,9 +22,9 @@
 	<title>Car Admin Dashboard</title>
 
 	<!-- Font awesome -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">p
 	<!-- Sandstone Bootstrap CSS -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">p
 	<!-- Bootstrap Datatables -->
 	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
 	<!-- Bootstrap social button library -->
