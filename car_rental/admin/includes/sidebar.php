@@ -3,53 +3,125 @@
             <div class="sidebar-wrapper">
                 <nav class="mt-2"> <!--begin::Sidebar Menu-->
                     <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-speedometer"></i>
-                                <p>
+                        <li class="nav-item"> <a href="#" class="nav-link"> 
+                        <i class="bi bi-house-heart"></i><p >
                                     Dashboard
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                    <!-- <i class="nav-arrow bi bi-chevron-right"></i> -->
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <!-- <ul class="nav nav-treeview">
                                 <li class="nav-item"> <a href="../index.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Dashboard v1</p>
                                     </a> </li>
-                            </ul>
+                            </ul> -->
                         </li>
                         
-                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-box-seam-fill"></i>
-                                <p>
-                                    User Management
+                        <li class="nav-item"> <a href="#" class="nav-link"><i class="bi bi-ev-front-fill"></i>
+                        <p>
+                                         Brands
                                     <i class="nav-arrow bi bi-chevron-right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item"> <a href="" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                                        <p>Add User</p>
+                                        <p>Create Brand</p>
                                     </a> </li>
                                 <li class="nav-item"> <a href="../widgets/cards.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                                        <p>Manage </p>
+                                        <p>Manage Brands</p>
                                     </a> </li>
                             </ul>
                         </li>
                       
-                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-pencil-square"></i>
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="bi bi-car-front"></i>
                                 <p>
-                                    Forms
+                                Vehicles
                                     <i class="nav-arrow bi bi-chevron-right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item"> <a href="../forms/general.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
-                                        <p>General Elements</p>
+                                        <p>Post a Vehicle</p>
+                                    </a> </li>
+                                    <li class="nav-item"> <a href="../widgets/cards.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>Manage Vehicles</p>
                                     </a> </li>
                             </ul>
                         </li>
+                    
+
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="bi bi-bookmark-dash-fill"></i></i>
+                                <p>
+                                Bookings
+                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"> <a href="../forms/general.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>New</p>
+                                    </a> </li>
+                                    <li class="nav-item"> <a href="../widgets/cards.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>Confirmed</p>
+                                    </a> </li>
+                                    <li class="nav-item"> <a href="../widgets/cards.html" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>Canceled</p>
+                                    </a> </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="bi bi-kanban-fill"></i>
+                                <p>
+                                Manage Testimonials
+                                    <!-- <i class="nav-arrow bi bi-chevron-right"></i> -->
+                                </p>
+                            </a>
+                        </li>
                         
                         
-                        <li class="nav-item"> <a href="../docs/license.html" class="nav-link"> <i class="nav-icon bi bi-patch-check-fill"></i>
-                                <p>License</p>
-                            </a> </li>
-                        <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="bi bi-question-square-fill"></i>
+                                <p>
+                                Manage Conatctus Query
+                                    <!-- <i class="nav-arrow bi bi-chevron-right"></i> -->
+                                </p>
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="bi bi-people-fill"></i>
+                                <p>
+                                Reg Users
+                                    <!-- <i class="nav-arrow bi bi-chevron-right"></i> -->
+                                </p>
+                            </a>
+                        </li>
+                        
+                        
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="bi bi-journals"></i>
+                                <p>
+                                Manage Pages
+                                    <!-- <i class="nav-arrow bi bi-chevron-right"></i> -->
+                                </p>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="bi bi-person-rolodex"></i>
+                                <p>
+                                Update Contact Info
+                                    <!-- <i class="nav-arrow bi bi-chevron-right"></i> -->
+                                </p>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="bi bi-substack"></i>
+                                <p>
+                                Manage Subscribers
+                                    <!-- <i class="nav-arrow bi bi-chevron-right"></i> -->
+                                </p>
+                            </a>
+                        </li>
+                        
+                        
+                       
+                        <!-- <li class="nav-header">MULTI LEVEL EXAMPLE</li> -->
                        
                     </ul> <!--end::Sidebar Menu-->
                 </nav>
