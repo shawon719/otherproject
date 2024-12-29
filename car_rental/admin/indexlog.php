@@ -1,4 +1,3 @@
-
 <?php 
         session_start();
 
@@ -8,7 +7,7 @@
             $email=$_POST["txtEmail"];
             $password=$_POST["txtPassword"];
 
-            if($email=="name$gmail.com" && $password=="123"){
+            if($email=="name@gmail.com" && $password=="123"){
                 $_SESSION["sname"]=$email;
                 header("location:dashboard.php");
             }
@@ -20,7 +19,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="./asstes/images/Pharmanest (1).png">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -89,15 +88,13 @@
              <div class="mb-3">
                 <label for="inputPassword5" class="form-label">Password</label>
                     <input type="password" name="txtPassword" id="inputPassword5" class="form-control" >
-                    <!-- <div id="passwordHelpBlock" class="form-text">
-                        Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-                     </div> -->
+                    
 
              </div>
 
              <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="button" name="btn">Button</button>
-                <!-- <button class="btn btn-primary" type="button">Button</button> -->
+                <button class="btn btn-primary" type="submit" name="btn">Button</button>
+               
             </div>
             
 

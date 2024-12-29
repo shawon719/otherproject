@@ -1,4 +1,4 @@
-
+ 
 A Car Rental Project can be broken down into different modules, each serving a specific function. Below is a list of core modules for a Car Rental system, each with its own functionality, designed to help both the admin and users manage the rental process efficiently.
 
 1. User Management Module
