@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="./bootstrap/booticon/font/bootstrap-icons.min.css">
     <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
 </head>
-        <?php
-                include("./includes/header.php");
-        ?>
+        
 
         <body class="layout-fixed sidebar-expand-lg sidebar-mini bg-body-tertiary"> <!--begin::App Wrapper-->
     <div class="app-wrapper"> <!--begin::Header-->
@@ -37,6 +35,9 @@
     <?php
          include("./includes/sidebar.php");
     ?>
+    <?php
+                include("./includes/header.php");
+        ?>
 
 
 
