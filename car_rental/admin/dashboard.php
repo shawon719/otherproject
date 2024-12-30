@@ -13,7 +13,7 @@
     <title>dashboard page</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./bootstrap/css/adminlte.min.css">
-    <link rel="stylesheet" href="./bootstrap/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="./bootstrap/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="./bootstrap/booticon/font/bootstrap-icons.min.css">
     <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
 </head>
