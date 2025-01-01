@@ -26,22 +26,11 @@
 
 </head>
 <body>
-    <!-- navbar start -->
+   
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container">
-                   <div header="header_component_right">
-                      <a href="#">
-                        <div>
-                          <img src="./asstes/img/main-logo.569c225.svg" alt="europa">
-                        </div>
-                      </a>
-
-                   </div>
-           
-          </div>
-    </nav>
-  <!-- navbar end -->
+  <?php
+      include("./pages/indexheader.php");
+  ?>
 
 
       
