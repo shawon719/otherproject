@@ -51,8 +51,14 @@
        .modal-body {
            /* overflow-y: auto; If the content is too long, enable scrolling  */
         }
-        #modalx{
-
+        .modalx{
+              border: 1px solid green;
+              height: 40px;
+              width: 10%;
+              font-weight: 900;
+        }
+        .modalx:hover{
+          border: 2px solid green;
         }
        
      </style>
@@ -82,9 +88,9 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
               <div class="rightmenu">
                     <ul class="navbar-nav">
-                      <button style="border:none" data-bs-toggle="modal" data-bs-target="#loginModal">
+                      <button style="border:none" data-bs-toggle="modal" data-bs-target="#loginModal" id="loginModalLabel">
                         <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user" style="width:24px,height:24px; margin-right:10px"></i>Log in</a>
+                          <a class="nav-link active" aria-current="page" href="#" ><i class="fa-solid fa-user" style="width:24px,height:24px; margin-right:10px"></i>Log in</a>
                         </li>
                       </button>
 
@@ -94,14 +100,23 @@
                             <div class="modal-content">
                               <div class="modal-header">
                                   <!-- <h5 class="modal-title" id="loginModalLabel">Login</h5> -->
-                                  <button id="modalx" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  <button id="modalx" type="button" class="btn-close modalx" data-bs-dismiss="modal" aria-label="Close"></button>
                                   
                               </div>
                               <div class="modal-body">
-                    <!-- Login Form -->
+                    <!-- Login Form --> 
                     <form>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
+                          <h3>Personal account login</h3>
+                            <!-- <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email"> -->
+                        </div>
+                        <div class="mb-3">
+                          
+                            <label for="email" class="form-label">Your Email or Driver ID
+
+                            <i class="fa-sharp-duotone fa-solid fa-circle-exclamation"></i>
+                          </label>
                             <input type="email" class="form-control" id="email" placeholder="Enter email">
                         </div>
                         <div class="mb-3">
