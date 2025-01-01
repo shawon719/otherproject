@@ -25,6 +25,35 @@
           .rightmenu{
             margin-right: 90px;
           }
+
+
+          /* Modal styles to come from the right and take full height */
+        .modal-dialog {
+            position: fixed;
+            top: 0;
+            right: 0;
+            margin: 0;
+            height: 100%;
+            width: 500px;
+            transform: translateX(100%); /* Initially off-screen */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Modal open state: slide in from the right */
+        .modal.show .modal-dialog {
+            transform: translateX(0);
+        }
+
+        .modal-content {
+            height: 100%;
+        }
+
+       .modal-body {
+           /* overflow-y: auto; If the content is too long, enable scrolling  */
+        }
+        #modalx{
+
+        }
        
      </style>
      
@@ -59,14 +88,16 @@
                         </li>
                       </button>
 
+                      <!-- login modal -->
                         <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                  <!-- <h5 class="modal-title" id="loginModalLabel">Login</h5> -->
+                                  <button id="modalx" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  
+                              </div>
+                              <div class="modal-body">
                     <!-- Login Form -->
                     <form>
                         <div class="mb-3">
