@@ -60,6 +60,10 @@
         .modalx:hover{
           border: 2px solid green;
         }
+        .logbtn{
+          height: 50px;
+          width: 100%;
+        }
        
      </style>
      
@@ -123,7 +127,22 @@
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" placeholder="Enter password">
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <div class="forgetpass">
+                          <p><a href="#">Forgot your password?</a></p>
+                        </div>
+
+                        <div>
+                        <button type="submit" class="btn btn-primary logbtn">Login</button>
+                        <button type="submit" class="btn btn-primary logbtn" style="margin-top: 15px;">Create Account</button>
+                        </div>
+
+                        <div class="forgetpass">
+                          <p><a href="#">Sign in to your Business account
+                          </a></p>
+                        </div>
+
+
+                        
                     </form>
                 </div>
             </div>
