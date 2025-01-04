@@ -64,7 +64,24 @@
           height: 50px;
           width: 100%;
         }
+
+        .menuform{
+          margin: 30px;
+        }
        
+        div .hightlightedtext{
+          /* margin-top: 98px; */
+          margin-right: 400px;
+          padding: 5opx;
+        }
+        .texthero{
+          width: calc(50% - 12px);
+          color: #fff;
+          font-size: 36px;
+          margin: 16px 0px 40px;
+          line-height: 1.22;
+          font-weight: 700;
+        }
      </style>
      
 </head>
@@ -73,7 +90,7 @@
 
     <header class="header-component-container">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
             <!-- img Logo -->
           
@@ -89,7 +106,7 @@
            
             
             <!-- Navbar menu aligned to the right -->
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
               <div class="rightmenu">
                     <ul class="navbar-nav">
                       <button style="border:none" data-bs-toggle="modal" data-bs-target="#loginModal" id="loginModalLabel">
@@ -108,79 +125,123 @@
                                   
                               </div>
                               <div class="modal-body">
-                    <!-- Login Form --> 
-                    <form>
-                        <div class="mb-3">
-                          <h3>Personal account login</h3>
-                            <!-- <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email"> -->
+                                  <!-- Login Form --> 
+                                <form>
+                                  <div class="mb-3">
+                                    <h3>Personal account login</h3>
+                                      <!-- <label for="email" class="form-label">Email address</label>
+                                      <input type="email" class="form-control" id="email" placeholder="Enter email"> -->
+                                  </div>
+                                  <div class="mb-3">
+                                    
+                                      <label for="email" class="form-label">Your Email or Driver ID
+
+                                      <i class="fa-sharp-duotone fa-solid fa-circle-exclamation"></i>
+                                    </label>
+                                      <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="password" class="form-label">Password</label>
+                                      <input type="password" class="form-control" id="password" placeholder="Enter password">
+                                  </div>
+                                  <div class="forgetpass">
+                                    <p><a href="#">Forgot your password?</a></p>
+                                  </div>
+
+                                  <div>
+                                  <button type="submit" class="btn btn-primary logbtn">Login</button>
+                                  <button type="submit" class="btn btn-primary logbtn" style="margin-top: 15px;">Create Account</button>
+                                  </div>
+
+                                  <div class="forgetpass">
+                                    <p><a href="#">Sign in to your Business account
+                                    </a></p>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div class="mb-3">
+
+                          <!-- us flag start -->
+                      <button style="border:none">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user" style="width:24px,height:24px; margin-right:10px"></i>US</a>
+                          </li>
+                      </button>
+                      <button style="border:none">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#"><i class="fa-regular fa-circle-exclamation" style="width:24px,height:24px; margin-right:10px"></i>Help</a>
+                          </li>
+                        </button>
                           
-                            <label for="email" class="form-label">Your Email or Driver ID
-
-                            <i class="fa-sharp-duotone fa-solid fa-circle-exclamation"></i>
-                          </label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter password">
-                        </div>
-                        <div class="forgetpass">
-                          <p><a href="#">Forgot your password?</a></p>
-                        </div>
-
-                        <div>
-                        <button type="submit" class="btn btn-primary logbtn">Login</button>
-                        <button type="submit" class="btn btn-primary logbtn" style="margin-top: 15px;">Create Account</button>
-                        </div>
-
-                        <div class="forgetpass">
-                          <p><a href="#">Sign in to your Business account
-                          </a></p>
-                        </div>
-
-
-                        
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    <!-- us flag start -->
-                    <button style="border:none">
+                        <!-- menu anothe -->
+                         <button style="border:none" data-bs-toggle="modal" data-bs-target="#menuModal" id="menuModalLabel">
                         <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-user" style="width:24px,height:24px; margin-right:10px"></i>US</a>
+                          <a class="nav-link active" aria-current="page" href="#" >
+                            <i class="fa-solid fa-bars" style="width:24px,height:24px; margin-right:10px"></i>Menu</a>
                         </li>
                       </button>
-                   <button style="border:none">
-                        <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#"><i class="fa-regular fa-circle-exclamation" style="width:24px,height:24px; margin-right:10px"></i>Help</a>
-                        </li>
-                      </button>
-                    <button style="border:none">
-                        <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-bars" style="width:24px,height:24px; margin-right:10px"></i>Menu</a>
-                        </li>
-                      </button>
-                </ul>
 
-              </div>
-                
-            </div>
-        </div>
-    </nav>
+                      <!-- login modal -->
+                        <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                 
+                                  <button id="modalx" type="button" class="btn-close modalx" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  
+                              </div>
+                              <div class="modal-body">
+                                  <!-- Login Form --> 
+                                <form style="text-align:right;">
+                                  <div class="mb-3 menuform" >
+                                    <h4>locations<i class="fa-light fa-chevron-right"></i></h4>
+                                     
+                                  </div>
+                                  <div class="mb-3 menuform">
+                                    
+                                      <h4><a href="#" style="color:black;">See all our details</a></h4>
+                                   
+                                     
+                                  </div>
+                                  <div class="mb-3 menuform">
+                                      <h4>vehicles<i class="fa-solid fa-greater-than" style="width:14px,height:10px; margin-left:10px"></i></h4>
+                                  </div>
+                                  <div class="forgetpass menuform">
+                                    <h4><a href="#" style="color:black;">Go to Europcar Business</a></h4>
+                                    
+                                  </div>
+                                  <div class="mb-3 menuform">
+                                    <h4>Services<i class="fa-solid fa-greater-than" style="width:14px,height:10px; margin-left:10px"></i></h4>
+                                  </div>
+
+                                  <div class="mb-3 menuform">
+                                  
+                                  <button type="submit" class="btn btn-primary logbtn" style="margin-top: 15px; width:50%;">Sign up to newsletter</button>
+                                  </div>
+
+                                  
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                  </ul>
+              </div>     
+          </div>
+      </div>
+  </nav>
            
-    <!-- </nav> -->
+    <!--nav end-->
+</header>
+    <!-- header end -->
 
+  <!--  -->
+          <div class="hightlightedtext">
+            <p class="texthero">Looking for a vehicle? You’re at the right place.</p>
 
-    </header>
-
-    
-  <!-- navbar end -->
-
+          </div>
 
       
     <script src="./bootstrap/dist/js/bootstrap.bundle.min.js"></script>

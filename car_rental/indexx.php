@@ -16,10 +16,10 @@
      <script src="./bootstrap/fontawesome/js/all.min.js"></script>
      <style>
       body{
-         background-image: url("asstes/img/background.jpg");
+         background-image: url("asstes/img/back0.jpg");
         background-repeat: no-repeat;
         width: 100%;
-        height: 200px; 
+        height: 100px; 
       }
       .header_component_right{
         -webkit-box-align: center;
