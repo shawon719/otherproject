@@ -2,6 +2,14 @@
         session_start();
 
         // include database and check connection
+        include_once("./includes/config/database.php");
+        $db=mysqli_connect("localhost","root","","carrental_database");
+        if(!$db){
+                throw new Exception("database connection failed" . mysqli_connect_error());
+            }
+            else{
+                echo "connected successful.";
+            }
 ?>
 
 
