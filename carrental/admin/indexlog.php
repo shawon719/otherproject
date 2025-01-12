@@ -2,8 +2,8 @@
 session_start();
 include('includes/config.php');
 
-$db = mysqli_connect("localhost","root","","carrental");
-if(! $db){
+$dbh = mysqli_connect("localhost","root","","carrental");
+if(! $dbh){
 	throw new Exception('Database connection failed: ' . mysqli_connect_error());
 }
 
@@ -31,14 +31,14 @@ if(! $db){
 		if(isset($_POST["login"])){
 
 			 // Retrieve form data and sanitize inputs
-			 $role = mysqli_real_escape_string($db, $_POST['user-roll']);
-			 $email = mysqli_real_escape_string($db, $_POST['username']);
-			 $password = mysqli_real_escape_string($db, $_POST['password']);
+			 $role = mysqli_real_escape_string($dbh, $_POST['user-roll']);
+			 $email = mysqli_real_escape_string($dbh, $_POST['username']);
+			 $password = mysqli_real_escape_string($dbh, $_POST['password']);
 		 
 			 // Check if all required fields are provided
 			 if ($email && $password && $role) {
 				 $query = "SELECT * FROM {$role} WHERE UserName='{$email}' AND password='{$password}'LIMIT 1";
-				 $user_result = mysqli_query($db, $query);
+				 $user_result = mysqli_query($dbh, $query);
 		 
 				 // Check if query was successful and if data exists
 				 if ($user_result && mysqli_num_rows($user_result) > 0) {

@@ -1,10 +1,10 @@
-<?php
+<!-- <?php
 session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
 	{	
-header('location:index.php');
+header('location:indexlog.php');
 }
 else{
 if(isset($_REQUEST['eid']))
@@ -226,7 +226,7 @@ echo htmlentities('Confirmed');
 	</div>
 
 	<!-- Loading Scripts -->
-	<script src="js/jquery.min.js"></script>
+	<!-- <script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.dataTables.min.js"></script>
@@ -240,7 +240,7 @@ function f3()
 {
 window.print(); 
 }
-</script>
+</script> -->
 </body>
 </html>
-<?php } ?>
+<?php //} ?> -->

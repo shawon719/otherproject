@@ -21,10 +21,10 @@ $password = "";
 $dbname = "carrental";
 //$store_url = "http://localhost/php-projects/pharmanest/";
 // db connection
-$db = new mysqli($localhost, $username, $password, $dbname);
+$dbh = new mysqli($localhost, $username, $password, $dbname);
 // check connection
-if($db->connect_error) {
-  die("Connection Failed : " . $db->connect_error);
+if($dbh->connect_error) {
+  die("Connection Failed : " . $dbh->connect_error);
 } else {
   // echo "Successfully connected";
 }
