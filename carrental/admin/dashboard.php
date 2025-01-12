@@ -61,17 +61,63 @@
 										<div class="panel panel-default">
 											<div class="panel-body bk-primary text-light">
 												<div class="stat-panel text-center">
-	<?php 
-	$sql ="SELECT id from tblusers ";
-	$query = $dbh -> prepare($sql);
-	$query->execute();
-	$results=$query->fetchAll(PDO::FETCH_OBJ);
-	$regusers=$query->rowCount();
-	?>
-													<div class="stat-panel-number h1 "><?php echo htmlentities($regusers);?></div>
-													<div class="stat-panel-title text-uppercase">Reg Users</div>
+													<?php 
+													// $sql ="SELECT id from tblusers ";
+													// $query = $dbh -> prepare($sql);
+													// $query->execute();
+													// $results=$query->fetchAll(PDO::FETCH_OBJ);
+													// $regusers=$query->rowCount();
+
+													// Establish a MySQLi connection
+													// $servername = "localhost"; // Replace with your server name
+													// $username = "username";    // Replace with your username
+													// $password = "password";    // Replace with your password
+													// $dbname = "carrental";      // Replace with your database name
+													
+													// Create connection
+													// $db= new mysqli($servername, $username, $password, $dbname);
+
+													include('./includes/config.php');
+													$db=new mysqli("localhost","root","","carrental");
+													
+													// Check the connection
+													if ($db->connect_error) {
+														die("Connection failed: " . $db->connect_error);
+													}
+													
+													// Write the SQL query
+													$sql = "SELECT id FROM tblusers";
+													
+													// Execute the query
+													$result = $db->query($sql);
+													
+													// Check if the query was successful
+													if ($result) {
+														// Fetch all results
+														$results = $result->fetch_all(MYSQLI_ASSOC);
+														
+														// Get the number of rows
+														$regusers = $result->num_rows;
+														
+														// You can now use $results and $regusers variables as needed
+														//print_r($results);  // For demonstration, printing the result
+														//echo "Number of registered users: $regusers";
+													} else {
+														// Handle query failure
+														echo "Error: " . $conn->error;
+													}
+													
+													// Close the connection
+													$db->close();
+												?>
+												<div class="stat-panel-number h1 ">
+													<?php 
+															echo htmlentities($regusers);
+													?>
 												</div>
+													<div class="stat-panel-title text-uppercase">Reg Users</div>
 											</div>
+										</div>
 											<a href="reg-users.php" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
@@ -79,13 +125,14 @@
 										<div class="panel panel-default">
 											<div class="panel-body bk-success text-light">
 												<div class="stat-panel text-center">
-												<?php 
-$sql1 ="SELECT id from tblvehicles ";
-$query1 = $dbh -> prepare($sql1);;
-$query1->execute();
-$results1=$query1->fetchAll(PDO::FETCH_OBJ);
-$totalvehicle=$query1->rowCount();
-?>
+													<?php 
+														$sql1 ="SELECT id from tblvehicles ";
+														$query1 = $dbh -> prepare($sql1);;
+														$query1->execute();
+														$results1=$query1->fetchAll(PDO::FETCH_OBJ);
+														$totalvehicle=$query1->rowCount();
+													?>
+													
 													<div class="stat-panel-number h1 "><?php echo htmlentities($totalvehicle);?></div>
 													<div class="stat-panel-title text-uppercase">Listed Vehicles</div>
 												</div>
