@@ -43,7 +43,9 @@
 <?php include('includes/header.php');?>
 
 	<div class="ts-main-content">
-<?php include('includes/leftbar.php');?>
+<?php 
+	include('includes/leftbar.php');
+?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
 
@@ -59,13 +61,13 @@
 										<div class="panel panel-default">
 											<div class="panel-body bk-primary text-light">
 												<div class="stat-panel text-center">
-<?php 
-$sql ="SELECT id from tblusers ";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$regusers=$query->rowCount();
-?>
+	<?php 
+	$sql ="SELECT id from tblusers ";
+	$query = $dbh -> prepare($sql);
+	$query->execute();
+	$results=$query->fetchAll(PDO::FETCH_OBJ);
+	$regusers=$query->rowCount();
+	?>
 													<div class="stat-panel-number h1 "><?php echo htmlentities($regusers);?></div>
 													<div class="stat-panel-title text-uppercase">Reg Users</div>
 												</div>
