@@ -2,7 +2,6 @@
 	session_start();
 	error_reporting(0);
 	include('includes/config.php');
-	//$db=new mysqli("localhost","root","","carrental");
 	if(strlen($_SESSION['alogin'])==0)
 		{	
 	header('location:index.php');
@@ -44,9 +43,7 @@
 <?php include('includes/header.php');?>
 
 	<div class="ts-main-content">
-<?php 
-	include('includes/leftbar.php');
-?>
+<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
 
@@ -62,21 +59,17 @@
 										<div class="panel panel-default">
 											<div class="panel-body bk-primary text-light">
 												<div class="stat-panel text-center">
-													<?php 
-													$sql ="SELECT id from tblusers ";
-													$query = $dbh -> prepare($sql);
-													$query->execute();
-													$results=$query->fetchAll(PDO::FETCH_OBJ);
-													$regusers=$query->rowCount();
-												?>
-												<div class="stat-panel-number h1 ">
-													<?php 
-															echo htmlentities($regusers);
-													?>
-												</div>
+<?php 
+$sql ="SELECT id from tblusers ";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$regusers=$query->rowCount();
+?>
+													<div class="stat-panel-number h1 "><?php echo htmlentities($regusers);?></div>
 													<div class="stat-panel-title text-uppercase">Reg Users</div>
+												</div>
 											</div>
-										</div>
 											<a href="reg-users.php" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
@@ -84,14 +77,13 @@
 										<div class="panel panel-default">
 											<div class="panel-body bk-success text-light">
 												<div class="stat-panel text-center">
-													<?php 
-														$sql1 ="SELECT id from tblvehicles ";
-														$query1 = $dbh -> prepare($sql1);;
-														$query1->execute();
-														$results1=$query1->fetchAll(PDO::FETCH_OBJ);
-														$totalvehicle=$query1->rowCount();			
-													?>
-
+												<?php 
+$sql1 ="SELECT id from tblvehicles ";
+$query1 = $dbh -> prepare($sql1);;
+$query1->execute();
+$results1=$query1->fetchAll(PDO::FETCH_OBJ);
+$totalvehicle=$query1->rowCount();
+?>
 													<div class="stat-panel-number h1 "><?php echo htmlentities($totalvehicle);?></div>
 													<div class="stat-panel-title text-uppercase">Listed Vehicles</div>
 												</div>
