@@ -96,12 +96,12 @@ if(! $dbh){
 						<div class="well row pt-2x pb-3x bk-light">
 							<div class="col-md-8 col-md-offset-2">
 								<form method="post">
-								<label for="user-roll" class="text-uppercase text-sm">Select Role</label>
-									<select name="user-roll" id="user-roll" class="form-control mb" required>
-										<option value="admin">Admin</option>
-										<option value="manager">Manager</option>
-										<option value="salesman">Salesman</option>
-									</select><br>
+									<label for="user-roll" class="text-uppercase text-sm">Select Role</label>
+										<select name="user-roll" id="user-roll" class="form-control mb" required>
+											<option value="admin">Admin</option>
+											<option value="manager">Manager</option>
+											<option value="salesman">Salesman</option>
+										</select><br>
 
 
 
