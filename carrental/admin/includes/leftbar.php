@@ -26,6 +26,15 @@
 					</ul>
 				</li>
 
+
+<li><a href="#"><i class="fa fa-sitemap"></i>Invoice</a>
+					<ul>
+						<li><a href="new-bookings.php">Add Invoice</a></li>
+						<li><a href="confirmed-bookings.php">Invoice List</a></li>
+						
+					</ul>
+				</li>
+
 		
 
 				<li><a href="testimonials.php"><i class="fa fa-table"></i> Manage Testimonials</a></li>

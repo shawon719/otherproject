@@ -58,7 +58,7 @@ $msg="Page data updated  successfully";
     background: #fff;
     border-left: 4px solid #dd3d36;
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(5, 5, 5, 0.1);
 }
 .succWrap{
     padding: 10px;
@@ -103,6 +103,7 @@ $msg="Page data updated  successfully";
 										<th>City</th>
 										<th>Country</th>
 										<th>Reg Date</th>
+										<th>Action</th>
 										
 										</tr>
 									</thead>
@@ -117,6 +118,7 @@ $msg="Page data updated  successfully";
 										<th>City</th>
 										<th>Country</th>
 										<th>Reg Date</th>
+										<th>Action</th>
 										</tr>
 										</tr>
 									</tfoot>
@@ -141,6 +143,12 @@ foreach($results as $result)
 											<td><?php echo htmlentities($result->City);?></td>
 											<td><?php echo htmlentities($result->Country);?></td>
 											<td><?php echo htmlentities($result->RegDate);?></td>
+
+											<td>
+												<!-- <a href="edit-user.php?id=<?php echo $result->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp; -->
+												<a href="manage-user.php?del=<?php echo $result->id;?>" onclick="return confirm('Do you want to delete this user');"><i class="fa fa-close"></i></a>
+											</td>
+
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
 										

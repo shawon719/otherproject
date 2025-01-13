@@ -192,7 +192,7 @@ echo htmlentities('Confirmed');
  	echo htmlentities('Cancelled');
  }
 										?></td>
-										<th>Last pdation Date</th>
+										<th>Last updation Date</th>
 										<td><?php echo htmlentities($result->LastUpdationDate);?></td>
 									</tr>
 
@@ -238,7 +238,7 @@ echo htmlentities('Confirmed');
 	<script language="javascript" type="text/javascript">
 function f3()
 {
-window.print(); 
+//window.print(); 
 }
 </script>
 </body>

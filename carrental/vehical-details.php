@@ -89,7 +89,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 <body>
 
 <!-- Start Switcher -->
-<?php include('includes/colorswitcher.php');?>
+<?php //include('includes/colorswitcher.php');?>
 <!-- /Switcher -->  
 
 <!--Header-->

@@ -832,7 +832,8 @@ table thead th, table thead td {
   width: 40px;
 }
 .uppercase_text {
-  color: #111;
+  /* color: #111; */
+  color: #000;
   font-size: 15px;
   font-weight: 900;
   line-height: 17px;
@@ -845,7 +846,8 @@ table thead th, table thead td {
   text-align:left;
 }
 .header_widgets a {
-	color:#555;
+	/* color:#555; */
+  color: #000;
 }
 .header_wrap {
   float: right;
@@ -934,6 +936,7 @@ table thead th, table thead td {
 ------------------------------------------*/
 #navigation_bar {
   background: #111111 none repeat scroll 0 0;
+  
   border-radius: 0;
   padding: 0;
 }
@@ -942,6 +945,7 @@ table thead th, table thead td {
 }
 nav.navbar {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+
   border: medium none;
   margin: 0 auto;
 }
@@ -965,6 +969,7 @@ nav.navbar {
 }
 .navbar-default .navbar-nav > li > a {
   color: #fff;
+  
   display: block;
   font-size: 13px;
   font-weight: 800;
