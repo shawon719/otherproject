@@ -39,7 +39,9 @@ error_reporting(0);
 <!-- /Switcher -->  
         
 <!--Header-->
-<?php include('includes/header.php');?>
+<?php include('includes/header.php');
+      // include('pagee.php');
+?>
 <!-- /Header --> 
 
 <!-- Banners -->
@@ -56,7 +58,12 @@ error_reporting(0);
       </div>
     </div>
   </div>
+
+  
 </section>
+<?php
+        //include('includes/pagee.php'); 
+  ?>
 <!-- /Banners --> 
 
 
