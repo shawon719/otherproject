@@ -1,4 +1,4 @@
-@charset "utf-8";
+/* @charset "utf-8"; */
 
 /*
 Theme Name: CarForYou - Responsive Car Dealer HTML5 Template.
@@ -286,7 +286,7 @@ blockquote {
 	color:#fff;
 }
 
-a, 
+/* a, 
 .btn-link, 
 .car-title-m h6 a:hover, 
 .featured-car-content > h6 a:hover, 
@@ -346,7 +346,83 @@ a,
 .header_style2 .dropdown-menu > li > a:hover {
 	color:#fa2837;
 	fill: #fa2837;
+} */
+
+      /* General elements with color #fa2837 */
+a:hover, 
+.btn-link, 
+.car-title-m h6 a:hover, 
+.featured-car-content > h6 a:hover, 
+.footer-top ul li a:hover, 
+.get-intouch a:hover, 
+.blog-content h5 a:hover, 
+.blog-info-box li a:hover, 
+.control-label span, 
+.angle_arrow i, 
+.contact_detail li a:hover, 
+.team_more_info p a:hover, 
+.error_text_m h2, 
+.search_btn, 
+.popular_post_title a:hover, 
+.categories_list ul li a:hover, 
+.categories_list ul li a:hover:after, 
+.article_meta ul li a:hover, 
+.articale_header h2 a:hover, 
+.product-listing-content h5 a:hover, 
+.footer_widget ul li a:hover, 
+.contact-info a:hover, 
+.social-follow a:hover, 
+.my_vehicles_list ul.vehicle_listing li a:hover, 
+.dealer_contact_info a:hover, 
+.dealers_listing .dealer_info h5 a:hover, 
+.services_info h4 a:hover, 
+.header_style2 .navbar-nav > li > .dropdown-menu a:hover, 
+.header_style2 .navbar-default .navbar-nav li:hover .dropdown-menu li a:hover, 
+.header_style2 .dropdown-menu > .active > a, 
+.header_style2 .dropdown-menu > .active > a:focus, 
+.header_style2 .dropdown-menu > .active > a:hover, 
+.header_style2 .dropdown-menu > li > a:focus, 
+.header_style2 .dropdown-menu > li > a:hover {
+    color: #fa2837;
+    fill: #fa2837;
 }
+
+/* Checkbox and radio button styles */
+.radio input[type=radio]:checked + label:before, 
+.checkbox input[type=checkbox]:checked + label:before {
+    color: #fa2837;
+}
+
+/* Pricing and other info boxes */
+.pricing_info .price, 
+.text-primary, 
+.price, 
+.inventory_info_list ul li i, 
+.main_features ul li p, 
+.listing_detail_head .price_info p, 
+.listing_other_info button:hover, 
+.compare_info table td i, 
+.compare_info table th i, 
+#accessories i, 
+.about_info .icon_box {
+    color: #fa2837;
+}
+
+/* Navbar active/hover states */
+.navbar-default .navbar-nav > li.active a, 
+.navbar-default .navbar-nav > li:focus a, 
+.navbar-default .navbar-nav > li:hover a,  
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:focus, 
+.navbar-default .navbar-nav > .open > a:hover {
+    color: #fa2837;
+}
+/* mine customize */
+
+
+
+
 
 a:hover, a:focus, .btn-link:hover {
 	color:#ff0012;
@@ -4064,10 +4140,10 @@ table.info-tabel tr td {
   top: 50%;
   width: 32px;
   transform:translateY(-50%)
-   -moz-transform:translateY(-50%);
-    -o-transform:translateY(-50%);
-     -webkit-transform:translateY(-50%);
-     -md-transform:translateY(-50%)
+   /* -moz-transform:translateY(-50%); */
+    /* -o-transform:translateY(-50%); */
+     /* -webkit-transform:translateY(-50%); */
+     /* -md-transform:translateY(-50%) */
 } 
 .td_divider {
   display: block;
