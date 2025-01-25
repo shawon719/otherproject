@@ -15,8 +15,9 @@ $dob=$_POST['dob'];
 $adress=$_POST['address'];
 $city=$_POST['city'];
 $country=$_POST['country'];
+$driving_license=$_POST['license'];
 $email=$_SESSION['login'];
-$sql="update tblusers set FullName=:name,ContactNo=:mobileno,dob=:dob,Address=:adress,City=:city,Country=:country where EmailId=:email";
+$sql="update tblusers set FullName=:name,ContactNo=:mobileno,dob=:dob,Address=:adress,City=:city,Country=:country,Driving_license=:driving_license where EmailId=:email";
 $query = $dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
 $query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
@@ -159,6 +160,10 @@ foreach($results as $result)
               <input class="form-control white_bg" name="fullname" value="<?php echo htmlentities($result->FullName);?>" id="fullname" type="text"  required>
             </div>
             <div class="form-group">
+              <label class="control-label">Driving License</label>
+              <input class="form-control white_bg" id="city" name="license" value="<?php echo htmlentities($result->Driving_license);?>" type="text">
+            </div>
+            <div class="form-group">
               <label class="control-label">Email Address</label>
               <input class="form-control white_bg" value="<?php echo htmlentities($result->EmailId);?>" name="emailid" id="email" type="email" required readonly>
             </div>
@@ -182,6 +187,7 @@ foreach($results as $result)
               <label class="control-label">City</label>
               <input class="form-control white_bg" id="city" name="city" value="<?php echo htmlentities($result->City);?>" type="text">
             </div>
+            
             <?php }} ?>
            
             <div class="form-group">
