@@ -14,8 +14,7 @@ if($query->rowCount() > 0)
 $_SESSION['login']=$_POST['email'];
 $_SESSION['fname']=$results->FullName;
 $currentpage=$_SERVER['REQUEST_URI'];
-// echo "<script type='text/javascript'> document.location = '$currentpage'; </script>";
-echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
+echo "<script type='text/javascript'> document.location = '$currentpage'; </script>";
 } else{
   
   echo "<script>alert('Invalid Details');</script>";
