@@ -174,7 +174,7 @@ foreach($results as $result)
   <tr>
     <th colspan="4" style="text-align:center;"> Grand Total</th>
     <th><?php echo htmlentities($tds*$ppd);?></th>
-    <th><a href="admin/payment.php">Pay Now</a></th>
+    <th><a href="payment.php?bookingno=<?php echo htmlentities($result->BookingNumber); ?>">Pay Now</a></th>
 
   </tr>
  

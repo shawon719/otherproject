@@ -1,291 +1,119 @@
 <?php
 session_start();
-error_reporting(0);
 include('includes/config.php');
 
-// Ensure the user is logged in, and fetch their information from the database
-if (isset($_SESSION['login'])) {
-    $userId = $_SESSION['login'];
-
-    // Fetch user data from the database
-    $query = "SELECT * FROM tblusers WHERE id = :id";
-    $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$user) {
-        // If no user is found, handle the case (maybe redirect or show an error)
-        echo "User not found!";
-        exit;
-    }
-} else {
-    // Redirect to login if the user is not logged in
-    header('Location: login.php');
-    exit;
+// চেক করুন, যদি ইউজার লগইন করে থাকে
+if (!isset($_SESSION['login'])) {
+    header('location:login.php'); // ইউজার যদি লগইন না থাকে তবে লগইন পেজে রিডাইরেক্ট করুন
 }
 
-if (isset($_GET['bookId'])) {
-    $paymentId = $_GET['bookId'];
-}
+if (isset($_POST['pay'])) {
+    $useremail = $_SESSION['login'];
+    $bookingno = $_GET['bookingno']; // বুকিং নম্বর গ্রহণ
+    $paymentmethod = $_POST['paymentmethod']; // পেমেন্ট পদ্ধতি
+    $amount = $_POST['amount']; // পরিমাণ
 
-// Assuming you already have a PDO connection stored in $pdo
+    // পেমেন্ট সফল হলে, tblbooking এবং paymenthistory টেবিল আপডেট করুন
+    // $status = 'paid'; // পেমেন্ট সম্পন্ন হয়েছে
 
-$query = "SELECT * FROM tblbooking WHERE id = :user_id";
-$stmt = $pdo->prepare($query);
+    // প্রথমে tblbooking টেবিল আপডেট করুন
+    $sql = "UPDATE tblbooking SET payment_status='paid' WHERE BookingNumber=:bookingno";
+    $query = $dbh->prepare($sql);
+    // $query->bindParam(':status', $status, PDO::PARAM_INT);
+    $query->bindParam(':bookingno', $bookingno, PDO::PARAM_STR);
+    $query->execute();
 
-// Bind the parameter
-$stmt->bindParam(':user_id', $paymentId, PDO::PARAM_INT);
+    $sql = "UPDATE tblbooking SET payment_method=:paymentmethod WHERE BookingNumber=:bookingno";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':paymentmethod', $paymentmethod, PDO::PARAM_STR);
+    $query->bindParam(':bookingno', $bookingno, PDO::PARAM_STR);
+    $query->execute();
 
-// Execute the statement
-$stmt->execute();
+    // এখন paymenthistory টেবিল আপডেট করুন
+    $paymentid = mt_rand(100000000, 999999999); // পেমেন্ট আইডি তৈরি
+    $sql_payment = "INSERT INTO payment_history (PaymentId, BookingNumber, UserEmail, Amount, PaymentMethod) VALUES (:paymentid, :bookingno, :useremail, :amount, :paymentmethod)";
+    $query_payment = $dbh->prepare($sql_payment);
+    $query_payment->bindParam(':paymentid', $paymentid, PDO::PARAM_INT);
+    $query_payment->bindParam(':bookingno', $bookingno, PDO::PARAM_STR);
+    $query_payment->bindParam(':useremail', $useremail, PDO::PARAM_STR);
+    $query_payment->bindParam(':amount', $amount, PDO::PARAM_STR);
+    $query_payment->bindParam(':paymentmethod', $paymentmethod, PDO::PARAM_STR);
+    $query_payment->execute();
 
-// Fetch the result
-$booking = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!$booking) {
-    echo "No bookings found.";
-    exit;
-}
+    $sql = "UPDATE payment_history SET payment_status='paid' WHERE BookingNumber=:bookingno";
+    $query = $dbh->prepare($sql);
+    // $query->bindParam(':status', $status, PDO::PARAM_INT);
+    $query->bindParam(':bookingno', $bookingno, PDO::PARAM_STR);
+    $query->execute();
 
-// Check if the user is admin (based on role)
-$is_admin = ($user['role'] === 'admin');
-$receiver_name = "";
 
-if ($is_admin) {
-    // Fetch admin name from the admin table
-    $admin_sql = "SELECT UserName FROM admin WHERE role = 'admin' LIMIT 1";
-    $stmt = $pdo->prepare($admin_sql);
+    echo "<script>alert('Payment Successful!');</script>";
+    echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
+   
+
     
-    // Execute the query
-    $stmt->execute();
-    
-    // Fetch the result
-    $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    if ($admin) {
-        $receiver_name = $admin['UserName']; // Or whatever the correct field is
-    }
-}
-
-if (isset($_POST['paymentBtn'])) {
-    $providerId = $_POST['userId'];
-    $providerName = $_POST['u_name'];
-    $providerEmail = $_POST['email'];
-    $bookingNumber = $_POST['room_type']; // Fixed variable name
-    $vehicleId = $_POST['room_number']; // Fixed variable name
-    $payment_method = $_POST['payment_method'];
-    $receiver_name = $_POST['reciver_name'];
-    $booking_id = $_POST['booking_id'];
-
-    // Error validation
-    if (empty($payment_method)) {
-        $errors['payment_method'] = "Payment Method is required.";
-    }
-
-    // If no errors, proceed with database insert
-    if (empty($errors)) {
-        // Insert payment into payment_history
-        $insertPayment = "INSERT INTO payment_history (booking_id, user_id, UserName, userEmail, vehicleId, payment_method, reciver_name) 
-        VALUES (:booking_id, :user_id, :name, :email, :vehicleId, :payment_method, :reciver_name)";
-        
-        $stmt = $pdo->prepare($insertPayment);
-        $stmt->bindParam(':booking_id', $booking_id, PDO::PARAM_INT);
-        $stmt->bindParam(':user_id', $providerId, PDO::PARAM_INT);
-        $stmt->bindParam(':name', $providerName, PDO::PARAM_STR);
-        $stmt->bindParam(':email', $providerEmail, PDO::PARAM_STR);
-        $stmt->bindParam(':vehicleId', $vehicleId, PDO::PARAM_STR);
-        $stmt->bindParam(':booking_number', $bookingNumber, PDO::PARAM_STR);
-        // Assuming you get the total price from the booking or elsewhere
-        $paid_total_price = $booking['total_amount']; // Adjust if needed
-        $stmt->bindParam(':paid_amount', $paid_total_price, PDO::PARAM_STR);
-        $stmt->bindParam(':payment_method', $payment_method, PDO::PARAM_STR);
-        $stmt->bindParam(':reciver_name', $receiver_name, PDO::PARAM_STR);
-
-        // Execute the insert query
-        if ($stmt->execute()) {
-            // Update booking payment status
-            $updateBooking = "UPDATE tblbooking SET payment_status = 'paid' WHERE user_id = :user_id AND booking_id = :booking_id";
-            $updateStmt = $pdo->prepare($updateBooking);
-            $updateStmt->bindParam(':user_id', $providerId, PDO::PARAM_INT);
-            $updateStmt->bindParam(':booking_id', $booking_id, PDO::PARAM_STR);
-
-            // Execute update query
-            if ($updateStmt->execute()) {
-                $success_message = "Payment Paid successfully!";
-                // header("location:user_dashboard.php?page=payment_history&success_message=$success_message");
-                exit;
-            } else {
-                echo "<p class='text-red-500'>Error updating booking: " . $updateStmt->errorInfo()[2] . "</p>";
-            }
-        } else {
-            echo "<p class='text-red-500'>Error inserting payment: " . $stmt->errorInfo()[2] . "</p>";
-        }
-    }
 }
 
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="theme-color" content="#3e454c">
-    <title>Car Rental Portal | Admin Update Brand</title>
-
-    <!-- Font awesome -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <!-- Sandstone Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Bootstrap Datatables -->
-    <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
-    <!-- Bootstrap social button library -->
-    <link rel="stylesheet" href="css/bootstrap-social.css">
-    <!-- Bootstrap select -->
-    <link rel="stylesheet" href="css/bootstrap-select.css">
-    <!-- Bootstrap file input -->
-    <link rel="stylesheet" href="css/fileinput.min.css">
-    <!-- Awesome Bootstrap checkbox -->
-    <link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
-    <!-- Admin Stye -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #495057;
-        }
-
-        #form_container {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 40px;
-            max-width: 600px;
-            margin: 40px auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            font-size: 24px;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #343a40;
-        }
-
-        .form-control {
-            border-radius: 8px;
-            border: 1px solid #ced4da;
-            padding: 12px;
-            font-size: 16px;
-        }
-
-        .form-select {
-            border-radius: 8px;
-            border: 1px solid #ced4da;
-            padding: 12px;
-            font-size: 16px;
-            background-color: #fff;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            font-size: 16px;
-            padding: 12px;
-            border-radius: 8px;
-            width: 100%;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
-        }
-
-        .mb-3 {
-            margin-bottom: 20px;
-        }
-
-        .alert {
-            background-color: #d4edda;
-            color: #155724;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .alert.success {
-            display: block;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-    </style>
-
+    <title>Payment | Car Rental</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <!-- FontAwesome -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
 </head>
-
 <body>
 
-    <section class="w-full py-20 min-h-[100vh] titel_content" id="form_container">
-        <form action="" method="post" enctype="multipart/form-data">
+<!-- Header -->
+<?php include('includes/header.php');?>
 
-            <h2 class="text-2xl font-bold text-center mb-4">Payment</h2>
+<!-- Payment Form -->
+<section class="container">
+    <h2>Payment Details</h2>
+    <form method="post">
+        <div class="form-group">
+            <label>Booking Number:</label>
+            <input type="text" class="form-control" name="bookingno" value="<?php echo $_GET['bookingno']; ?>" readonly>
+        </div>
+        <div class="form-group">
+            <label>Total Amount:</label>
+            <!-- <input type="text" class="form-control" name="amount" value="<?php //echo $_GET['amount']; ?>" readonly> -->
+            <input type="text" class="form-control" name="amount"  >
 
-            <input type="hidden" name="booking_id" id="booking_id" value="<?= htmlspecialchars($booking['id']) ?>">
+        </div>
+        <div class="form-group">
+            <label>Payment Method:</label>
+            <select class="form-control" name="paymentmethod" required>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="PayPal">PayPal</option>
+            </select>
+        </div>
+        <button type="submit" name="pay" class="btn btn-primary">Pay</button>
+    </form>
+</section>
 
-            <div class="mb-3">
-                <input type="text" name="u_name" id="u_name" class="form-control" value="<?= htmlspecialchars($user['UserName']) ?>" readonly required>
-            </div>
-            <div class="mb-3">
-                <input type="email" name="email" id="email" class="form-control" value="<?= htmlspecialchars($user['userEmail']) ?>" readonly required>
-            </div>
+<!-- Footer -->
+<?php include('includes/footer.php');?>
 
-            <div class="mb-3">
-                <input type="text" name="room_type" id="room_type" class="form-control" value="<?= htmlspecialchars($booking['BookingNumber']) ?>" readonly required>
-            </div>
-            <div class="mb-3">
-                <input type="text" name="room_number" id="room_number" class="form-control" value="<?= htmlspecialchars($booking['VehicleId']) ?>" readonly required>
-            </div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script> 
+<script src="assets/js/interface.js"></script> 
+<!--Switcher-->
+<script src="assets/switcher/js/switcher.js"></script>
+<!--bootstrap-slider-JS--> 
+<script src="assets/js/bootstrap-slider.min.js"></script> 
+<!--Slider-JS--> 
+<script src="assets/js/slick.min.js"></script> 
+<script src="assets/js/owl.carousel.min.js"></script>
 
-            <div class="mb-3">
-                <input type="text" name="reciver_name" id="reciver_name" class="form-control" value="<?= htmlspecialchars($receiver_name) ?>" readonly required>
-            </div>
 
-            <div class="mb-3">
-                <select name="payment_method" id="payment_method" class="form-select">
-                    <option value="" selected>Choose Payment Method</option>
-                    <option value="SSL">SSL</option>
-                    <option value="PayPal">PayPal</option>
-                </select>
-                <small class="text-danger"><?= $errors['payment_method'] ?? '' ?></small>
-            </div>
-
-            <div>
-                <button type="submit" name="paymentBtn" class="btn btn-primary w-100">Pay</button>
-            </div>
-        </form>
-    </section>
-
-    <!-- Loading Scripts -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap-select.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="js/dataTables.bootstrap.min.js"></script>
-    <script src="js/Chart.min.js"></script>
-    <script src="js/fileinput.js"></script>
-    <script src="js/chartData.js"></script>
-    <script src="js/main.js"></script>
 </body>
-
 </html>
