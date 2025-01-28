@@ -2,6 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
+
 // Ensure the user is logged in, and fetch their information from the database
 if (isset($_SESSION['login'])) {
     $userId = $_SESSION['login'];
@@ -24,9 +25,11 @@ if (isset($_SESSION['login'])) {
     header('Location: login.php');
     exit;
 }
+
 if (isset($_GET['bookId'])) {
     $paymentId = $_GET['bookId'];
 }
+
 // Assuming you already have a PDO connection stored in $pdo
 
 $query = "SELECT * FROM tblbooking WHERE id = :user_id";
@@ -41,18 +44,17 @@ $stmt->execute();
 // Fetch the result
 $booking = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($booking) {
-    // Booking found
-} else {
+if (!$booking) {
     echo "No bookings found.";
     exit;
 }
 
-$is_admin = $user;
+// Check if the user is admin (based on role)
+$is_admin = ($user['role'] === 'admin');
 $receiver_name = "";
 
 if ($is_admin) {
-    // Fetch admin name from admin table
+    // Fetch admin name from the admin table
     $admin_sql = "SELECT UserName FROM admin WHERE role = 'admin' LIMIT 1";
     $stmt = $pdo->prepare($admin_sql);
     
@@ -73,20 +75,19 @@ if (isset($_POST['paymentBtn'])) {
     $providerEmail = $_POST['email'];
     $bookingNumber = $_POST['room_type']; // Fixed variable name
     $vehicleId = $_POST['room_number']; // Fixed variable name
-    // $paid_total_price = $_POST['total_price'];
     $payment_method = $_POST['payment_method'];
     $receiver_name = $_POST['reciver_name'];
     $booking_id = $_POST['booking_id'];
 
     // Error validation
     if (empty($payment_method)) {
-        $errors['payment_method'] = "Payment Method are required.";
+        $errors['payment_method'] = "Payment Method is required.";
     }
 
     // If no errors, proceed with database insert
     if (empty($errors)) {
         // Insert payment into payment_history
-        $insertPayment = "INSERT INTO payment_history (booking_id, user_id, UserName, userEmail, vehicleId,payment_method, reciver_name) 
+        $insertPayment = "INSERT INTO payment_history (booking_id, user_id, UserName, userEmail, vehicleId, payment_method, reciver_name) 
         VALUES (:booking_id, :user_id, :name, :email, :vehicleId, :payment_method, :reciver_name)";
         
         $stmt = $pdo->prepare($insertPayment);
@@ -94,8 +95,10 @@ if (isset($_POST['paymentBtn'])) {
         $stmt->bindParam(':user_id', $providerId, PDO::PARAM_INT);
         $stmt->bindParam(':name', $providerName, PDO::PARAM_STR);
         $stmt->bindParam(':email', $providerEmail, PDO::PARAM_STR);
-        $stmt->bindParam(':vehicleId', $vehivleId, PDO::PARAM_STR);
+        $stmt->bindParam(':vehicleId', $vehicleId, PDO::PARAM_STR);
         $stmt->bindParam(':booking_number', $bookingNumber, PDO::PARAM_STR);
+        // Assuming you get the total price from the booking or elsewhere
+        $paid_total_price = $booking['total_amount']; // Adjust if needed
         $stmt->bindParam(':paid_amount', $paid_total_price, PDO::PARAM_STR);
         $stmt->bindParam(':payment_method', $payment_method, PDO::PARAM_STR);
         $stmt->bindParam(':reciver_name', $receiver_name, PDO::PARAM_STR);
@@ -121,9 +124,6 @@ if (isset($_POST['paymentBtn'])) {
         }
     }
 }
-
-
-
 
 ?>
 
@@ -241,7 +241,6 @@ if (isset($_POST['paymentBtn'])) {
 
             <h2 class="text-2xl font-bold text-center mb-4">Payment</h2>
 
-            <input type="text" name="u_name" id="u_name" class="form-control" value="<?= htmlspecialchars($user['UserName']) ?>"> 
             <input type="hidden" name="booking_id" id="booking_id" value="<?= htmlspecialchars($booking['id']) ?>">
 
             <div class="mb-3">
@@ -257,10 +256,6 @@ if (isset($_POST['paymentBtn'])) {
             <div class="mb-3">
                 <input type="text" name="room_number" id="room_number" class="form-control" value="<?= htmlspecialchars($booking['VehicleId']) ?>" readonly required>
             </div>
-
-            <!-- <div class="mb-3">
-                <input type="text" name="total_price" id="total_price" class="form-control" value="<//?= htmlspecialchars($booking['total_amount']) ?>" readonly required>
-            </div> -->
 
             <div class="mb-3">
                 <input type="text" name="reciver_name" id="reciver_name" class="form-control" value="<?= htmlspecialchars($receiver_name) ?>" readonly required>

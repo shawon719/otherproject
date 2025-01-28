@@ -92,7 +92,7 @@
                                 <label for="" class="text-uppercase text-sm">Select Role </label>
                                 <select name="user-roll" id="user-roll" class="form-select" required>
                                     <option value="admin">Admin</option>
-                                    <option value="manager">Driver</option>
+                                    <option value="driver">Driver</option>
                                     <option value="salesman">Salesman</option>
                                 </select><br><br>
 

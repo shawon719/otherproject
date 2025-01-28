@@ -354,6 +354,15 @@ $_SESSION['brndid']=$result->bid;
               <label>To Date:</label>
               <input type="date" class="form-control" name="todate" placeholder="To Date" required>
             </div>
+
+              <div class="form-group">
+               
+        
+              <label>Total Amount:</label>
+               <th><?php echo htmlentities($tds*$ppd);?></th>
+              <!-- <input type="date" class="form-control" name="todate" placeholder="To Date" required> -->
+            </div>
+           
             <div class="form-group">
               <textarea rows="4" class="form-control" name="message" placeholder="Message" required></textarea>
             </div>
