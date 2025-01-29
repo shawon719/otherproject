@@ -8,7 +8,12 @@ if (!isset($_SESSION['login'])) {
     exit;
 }
 
-$payment_id = $_SESSION['login'];
+$payment_id = $_SESSION['login']; // Assuming this is an email
+
+// Prepare the query to prevent SQL injection
+$query = $dbh->prepare("SELECT * FROM payment_history WHERE UserEmail = :userEmail ORDER BY Amount DESC");
+$query->bindParam(':userEmail', $payment_id, PDO::PARAM_STR);
+$query->execute();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +21,7 @@ $payment_id = $_SESSION['login'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment List</title>
+    <title>Payment history</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
@@ -68,23 +73,22 @@ $payment_id = $_SESSION['login'];
                                     <th>User Email</th>
                                     <th>Paid Amount</th>
                                     <th>Payment Method</th>
+                                    <th>Payment Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                // Using PDO prepared statement
-                                $query = $dbh->prepare("SELECT * FROM payment_history WHERE PaymentId = :paymentid ORDER BY Amount DESC");
-                                $query->bindParam(':paymentid', $payment_id, PDO::PARAM_INT);
-                                $query->execute();
-
+                                // Check if any payment records exist for the logged-in user
                                 if ($query->rowCount() > 0) {
                                     $counter = 1;
                                     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                        $paymentid = $row['user_id'];
-                                        $booking_num = $row['bookingno'];
-                                        $userEmail = $row['userEmail'];
-                                        $paid_amount = $row['paid_amount'];
-                                        $payment_method = $row['payment_method'];
+                                        // Assign the data to variables from the row
+                                        $paymentid = $row['id'];
+                                        $booking_num = $row['BookingNumber'];
+                                        $userEmail = $row['UserEmail'];
+                                        $paid_amount = $row['Amount'];  // Assuming the column name for the amount is 'Amount'
+                                        $payment_method = $row['PaymentMethod'];
+                                        $payment_status= $row['payment_status'];
 
                                         echo "
                                             <tr>
@@ -94,6 +98,7 @@ $payment_id = $_SESSION['login'];
                                                 <td>{$userEmail}</td>
                                                 <td>{$paid_amount}</td>
                                                 <td>{$payment_method}</td>
+                                                <td>{$payment_status}</td>
                                             </tr>
                                         ";
                                         $counter++;
